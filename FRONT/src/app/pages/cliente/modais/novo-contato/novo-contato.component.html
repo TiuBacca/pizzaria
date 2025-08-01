@@ -1,0 +1,40 @@
+<div class="modal fade" id="modalContato" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md modalAdicionar">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="card-title">Adicionar contato</h5>
+
+                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="incluirForm">
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label for="rua">Contato</label>
+                            <input type="text" class="form-control" formControlName="contato" />
+                        </div>
+
+                          <div class="col-md-4">
+                            <label for="estado">Tipo</label>
+                            <ng-multiselect-dropdown [placeholder]="'Selecione'"
+                                [settings]="dropdownSettings" [data]="listaCombos['tipo']"
+                                formControlName="tipo">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary" (click)="salvarContato()">Salvar</button>
+
+            </div>
+        </div>
+    </div>
+</div>

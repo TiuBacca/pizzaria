@@ -1,0 +1,79 @@
+<div class="background-container">
+    <div class="background-image"></div>
+
+
+    <div class="conteudo">
+        <div class="row">
+            <div class="col text-end">
+                <button type="button" (click)="pesquisar()" class="btn btn-primary">
+                    <i class="bi bi-search"></i>&nbsp;Pesquisar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-secondary" (click)="limpar()">
+                    <i class="bi bi-brush"></i>&nbsp;Limpar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-success" (click)="openModalNovoProduto()">
+                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar
+                </button>
+            </div>
+        </div>
+        <div class="espaco"></div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Descrição</label>
+                <input type="text" class="form-control" [(ngModel)]="inputFiltros['descricao']">
+            </div>
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Setor</label>
+                <ng-multiselect-dropdown [placeholder]="'Selecione'" [settings]="listaConfigCombos['setor']"
+                    [data]="listaCombos['setor']" [(ngModel)]="inputFiltros['setor']">
+                </ng-multiselect-dropdown>
+            </div>
+
+        </div>
+
+        <div class="espaco"></div>
+
+        <div id="tabelaResponsiva">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Setor</th>
+                        <th>Quantidade em estoque</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let retorno of produtos  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
+                        <td>{{retorno.descricao}}</td>
+                        <td>{{retorno.setor}}</td>
+                        <td>{{retorno.precoUnit}}</td>
+
+                        <td class="textoCentralizado">
+
+                            <div class="icones-container">
+
+                                <a class="icone" title="Histórico compras">
+                                    <i class="bi bi-clock-history" (click)="openModalHistoricoCompras(retorno)"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="paginaGridInicial = $event" id="paginaGridInicial"
+                previousLabel="Anterior" nextLabel="Próxima">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+
+
+<app-historico-compras #modalHistoricoCompras></app-historico-compras>
+<app-novo-produto #modalNovoProduto></app-novo-produto>

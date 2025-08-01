@@ -1,0 +1,13 @@
+.dropdown-menu {
+  position: fixed !important; 
+}
+
+.dropdown-menu.show {
+  display: block !important; 
+}
+.dropdown-menu .dropdown-item {
+  padding: 8px 15px;
+}
+.pointer {
+  cursor: pointer !important;
+}

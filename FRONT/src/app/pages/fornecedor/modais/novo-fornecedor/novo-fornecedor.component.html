@@ -1,0 +1,30 @@
+<div class="modal fade" id="modalNovoFornecedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg custom-modal-width">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="card-title">Adicionar fornecedor</h5>
+        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="incluirForm">
+          <div class="mb-3">
+            <label for="nome">Nome</label>
+            <input class="form-control" id="nome" formControlName="nome" type="text">
+          </div>
+
+          <div class="mb-3">
+            <label for="nome">CNPJ</label>
+            <input class="form-control" id="cnpj" formControlName="cnpj" type="text">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" (click)="salvar()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="modal fade" id="modalProdutoFornecedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+
+            <div class="modal-header position-relative">
+                <h5 class="card-title mb-0">Produtos credenciados ({{fornecedor?.pessoa?.nome}})</h5>
+
+                <button type="button" class="btn btn-success" style="margin-top: 25px;"
+                    (click)="openModalNovoProdutoFornecedor()">
+                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar
+                </button>
+
+                <a type="button" class="btn-close btn-close-lg position-absolute top-0 end-0 m-2"
+                    data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+
+            <div class="modal-body">
+
+                <div id="tabelaResponsiva">
+                    <table class="table" id="excel-table">
+                        <thead>
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Setor</th>
+                                <th>Preço unidade</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let retorno of produtos  | paginate: {itemsPerPage: 10, currentPage: paginaProdutoFornecedor, id:'c' }; let i = index">
+
+                                <td>{{retorno.descricao}}</td>
+                                <td>{{retorno.setor}}</td>
+                                <td>{{retorno.valor || 0.0 | currency:'BRL':'symbol':'1.2-2' }}</td>
+
+                                <td>
+                                    <div class="icones-container">
+                                        <a class="icone icone-item-grid iconeAdicionar" title="Fazer pedido">
+                                            <i class="bi bi-cart-plus-fill" (click)="fazerPedidoProduto(retorno)"></i>
+                                        </a>
+
+                                        <a class="icone icone-item-grid iconeEditar" title="Editar">
+                                            <i class="bi bi-pencil-fill" (click)="alterarProduto(retorno)"></i>
+                                        </a>
+
+                                        <a class="icone icone-item-grid iconeExcluir" title="Excluir">
+                                            <i class="bi bi-trash" (click)="excluirProduto(retorno)"></i>
+                                        </a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <pagination-controls (pageChange)="paginaProdutoFornecedor = $event" id="paginaProdutoFornecedor"
+                        previousLabel="Anterior" nextLabel="Próxima">
+                    </pagination-controls>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-novo-produto-fornecedor #modalNovoProdutoFornecedor></app-novo-produto-fornecedor>

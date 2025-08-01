@@ -1,0 +1,91 @@
+<div class="background-container">
+    <div class="background-image"></div>
+
+
+    <div class="conteudo">
+        <div class="row">
+            <div class="col text-end">
+                <button type="button" (click)="pesquisar()" class="btn btn-primary">
+                    <i class="bi bi-search"></i>&nbsp;Pesquisar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-secondary" (click)="limpar()">
+                    <i class="bi bi-brush"></i>&nbsp;Limpar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-success" (click)="openModalNovoFornecedor()">
+                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar
+                </button>
+            </div>
+        </div>
+        <div class="espaco"></div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Nome</label>
+                <input type="text" class="form-control" [(ngModel)]="inputFiltros['nome']">
+            </div>
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Situação</label>
+                <ng-multiselect-dropdown [placeholder]="'Selecione'" [settings]="listaConfigCombos['situacao']"
+                    [data]="listaCombos['situacao']" [(ngModel)]="inputFiltros['situacao']">
+                </ng-multiselect-dropdown>
+            </div>
+            
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Último venda</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">De:</span>
+                    <input type="date" class="form-control" [(ngModel)]="inputFiltros['dataInicial']" max="9999-12-31">
+                    <span class="input-group-text">Até:</span>
+                    <input type="date" class="form-control" [(ngModel)]="inputFiltros['dataFinal']" max="9999-12-31">
+                </div>
+            </div>
+        </div>
+
+        <div class="espaco"></div>
+
+        <div id="tabelaResponsiva">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Situação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let retorno of fornecedores  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
+                        <td>{{retorno.pessoa?.nome}}</td>
+                        <td>{{retorno.situacao}}</td>
+
+                        <td>
+
+                            <div class="icones-container">
+
+                                <a class="icone icone-item-grid" title="Produtos">
+                                    <i class="bi bi-bag-check" (click)="openModalProdutoFornecedor(retorno)"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid" title="Histórico">
+                                    <i class="bi bi-clock-history" (click)="openModalHistorico(retorno)"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="paginaGridInicial = $event" id="paginaGridInicial"
+                previousLabel="Anterior" nextLabel="Próxima">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+
+<app-novo-fornecedor #modalNovoFornecedor></app-novo-fornecedor>
+<app-historico-fornecedor #modalHistoricoFornecedor></app-historico-fornecedor>
+<app-produto-fornecedor #modalProdutoFornecedor></app-produto-fornecedor>

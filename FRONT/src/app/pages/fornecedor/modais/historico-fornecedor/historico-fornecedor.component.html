@@ -1,0 +1,57 @@
+<div class="modal fade" id="modalHistoricoFornecedor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content ">
+
+            <div class="modal-header position-relative">
+                <h5 class="card-title mb-0">Histórico ({{fornecedor?.pessoa?.nome}})</h5>
+
+                <a type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal"
+                    aria-label="Close"></a>
+
+                <div class="total-label ms-auto mt-2">
+                    Total:
+                    <span class="total-valor">
+                        {{ getValorTotalHistorico() | currency:'BRL':'symbol':'1.2-2' }}
+                    </span>
+                </div>
+            </div>
+
+
+
+            <div class="modal-body">
+
+                <div id="tabelaResponsiva">
+                    <table class="table" id="excel-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Valor unidade</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let retorno of historicoFornecedor  | paginate: {itemsPerPage: 10, currentPage: paginaHistorico, id:'idPaginaHistorico' }; let i = index">
+
+                                <td>{{retorno.data | date:'dd/MM/yyyy'}}</td>
+                                <td>{{retorno.produto?.descricao}}</td>
+                                <td>{{retorno.qtd}}</td>
+                                <td>{{retorno.produto?.valor || 0.0 | currency:'BRL':'symbol':'1.2-2' }}</td>
+                                <td>{{retorno.produto?.valor * retorno.qtd || 0.0 | currency:'BRL':'symbol':'1.2-2' }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <pagination-controls (pageChange)="paginaHistorico = $event" id="idPaginaHistorico"
+                        previousLabel="Anterior" nextLabel="Próxima">
+                    </pagination-controls>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{   
+    "rotas":[
+    {
+        "rota":"/home",
+        "nome":"Home",
+        "icone":"bi bi-house",
+        "cor":"#012970"
+    },
+    {
+        "rota":"/cliente",
+        "nome":"Clientes",
+        "icone":"bi bi-person-fill",
+        "cor":"#012970"
+    },
+    {
+        "rota":"/entrega",
+        "nome":"Entrega",
+        "icone":"bi bi-bicycle",
+        "cor":"#012970"
+    },
+    {
+        "rota":"/fornecedor",
+        "nome":"Fornecedor",
+        "icone":"bi bi-truck",
+        "cor":"#012970"
+    },
+    {
+        "rota":"/funcionario",
+        "nome":"Funcionários",
+        "icone":"bi bi-person-vcard-fill",
+        "cor":"#012970"
+    },
+    {
+        "rota":"/pedido",
+        "nome":"Pedido",
+        "icone":"bi bi-sort-up",
+        "cor":"#012970"
+    },
+    {
+        "rota":"/produto",
+        "nome":"Produto",
+        "icone":"bi bi-basket",
+        "cor":"#012970"
+    }
+]}

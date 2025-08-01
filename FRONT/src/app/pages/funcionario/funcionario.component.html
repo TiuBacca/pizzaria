@@ -1,0 +1,100 @@
+<div class="background-container">
+    <div class="background-image"></div>
+
+
+    <div class="conteudo">
+        <div class="row">
+            <div class="col text-end">
+                <button type="button" (click)="pesquisar()" class="btn btn-primary">
+                    <i class="bi bi-search"></i>&nbsp;Pesquisar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-secondary" (click)="limpar()">
+                    <i class="bi bi-brush"></i>&nbsp;Limpar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-success" (click)="openModalNovoFuncionario()">
+                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar
+                </button>
+            </div>
+        </div>
+        <div class="espaco"></div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Nome</label>
+                <input type="text" class="form-control" [(ngModel)]="inputFiltros['filtroTitulo']">
+            </div>
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Situação</label>
+                <ng-multiselect-dropdown [placeholder]="'Selecione'" [settings]="listaConfigCombos['configSituacao']"
+                    [data]="listaCombos['listaSituacao']" [(ngModel)]="inputFiltros['itensSituacao']">
+                </ng-multiselect-dropdown>
+            </div>
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Data contratação</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">De:</span>
+                    <input type="date" class="form-control" [(ngModel)]="inputFiltros['filtroDataInicial']"
+                        max="9999-12-31">
+
+                    <span class="input-group-text">Até:</span>
+                    <input type="date" class="form-control" [(ngModel)]="inputFiltros['filtroDataFinal']"
+                        max="9999-12-31">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="espaco"></div>
+
+        <div id="tabelaResponsiva">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Situação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let retorno of funcionarios  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
+                        <td>{{retorno.nome}}</td>
+                        <td>{{retorno.situacao}}</td>
+
+                        <td class="textoCentralizado">
+
+                            <div class="icones-container">
+                                <a class="icone icone-item-grid iconeEditar " title="Editar">
+                                    <i class="bi bi-pencil-fill" (click)="openModalEdicaoFuncionario(retorno)"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid iconeVendas " title="Histórico vendas">
+                                    <i class="bi bi-cash-coin"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid iconeAdvertencia" title="Advertencia">
+                                    <i class="bi bi-person-exclamation"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid iconeExcluir" title="Demitir">
+                                    <i class="bi bi-person-x"></i>
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="paginaGridInicial = $event" id="paginaGridInicial"
+                previousLabel="Anterior" nextLabel="Próxima">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+
+<app-novo-funcionario #modalNovoFuncionario></app-novo-funcionario>

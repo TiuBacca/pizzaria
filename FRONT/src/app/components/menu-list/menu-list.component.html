@@ -1,0 +1,9 @@
+<div #menuList [ngClass]="menuListPosition === 'aberto-para-cima' ? 'dropup' : 'dropdown'">
+    <span class="bi bi-three-dots-vertical pointer"  data-bs-toggle="dropdown" aria-expanded="false"></span >
+    <ul class="dropdown-menu">
+        <li *ngFor="let item of listaMenu"> 
+            <div *ngIf="item.divider" class="dropdown-divider p-1"></div>
+            <a class="dropdown-item pointer" (click)="onClickItem(item)"><i *ngIf="item.icone" class="{{item.icone}}" style.color="{{item.cor}}"></i> {{item.nome}}</a>
+        </li>
+    </ul>
+</div>

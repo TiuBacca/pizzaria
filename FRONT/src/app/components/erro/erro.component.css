@@ -1,0 +1,12 @@
+.container
+{
+    color: #2a3547;
+}
+.error-card h1 {
+    font-family: DM Sans, sans-serif;
+    font-size: 210px;
+    font-weight: 800;
+    line-height: 210px;
+    margin: 0;
+    text-shadow: 4px 5px 1px #b3bbbf;
+}

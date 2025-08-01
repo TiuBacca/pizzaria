@@ -1,0 +1,16 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item" *ngFor="let item of list">
+          <a class="nav-link collapsed" routerLink="{{item.rota}}">
+              <i class="{{item.icone}}"></i>
+              <span>{{item.nome}}</span>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="javascript:void(0)" (click)="logout()">
+              <i class="bi bi-box-arrow-left"></i>
+              <span>Sair</span>
+          </a>
+      </li>
+  </ul>
+</aside>

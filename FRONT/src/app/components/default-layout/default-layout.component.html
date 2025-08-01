@@ -1,0 +1,20 @@
+<lib-header [titulo]="'Pizzaria'" [usuario]="info.usuario" [acoes]="menuAcoes"
+[logo]="'./assets/img/logo.jpg'" [usuarioImg]="linkImagem" (onAcaoClick)="onAction($event)" ></lib-header>
+<lib-nav [list]="rotas"></lib-nav>
+<lib-loader></lib-loader>
+<main id="main" class="main over">
+    <div class="pagetitle">
+        <h1>{{nomePagina}}</h1>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card col">
+                    <div class="card-body">
+                      <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

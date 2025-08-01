@@ -1,0 +1,102 @@
+<div class="background-container">
+    <div class="background-image"></div>
+
+
+    <div class="conteudo">
+        <div class="row">
+            <div class="col text-end">
+                <button type="button" (click)="pesquisar()" class="btn btn-primary">
+                    <i class="bi bi-search"></i>&nbsp;Pesquisar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-secondary" (click)="limpar()">
+                    <i class="bi bi-brush"></i>&nbsp;Limpar
+                </button>
+                <label for="floatingSelect">&nbsp;&nbsp;</label>
+                <button type="button" class="btn btn-success" (click)="openModalNovoCliente()">
+                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar
+                </button>
+            </div>
+        </div>
+        <div class="espaco"></div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Nome</label>
+                <input type="text" class="form-control" [(ngModel)]="inputFiltros['filtroTitulo']">
+            </div>
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Situação</label>
+                <ng-multiselect-dropdown [placeholder]="'Selecione'" [settings]="listaConfigCombos['configSituacao']"
+                    [data]="listaCombos['listaSituacao']" [(ngModel)]="inputFiltros['itensSituacao']">
+                </ng-multiselect-dropdown>
+            </div>
+
+            <div class="col-md-4">
+                <label for="floatingSelect">Último pedido</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">De:</span>
+                    <input type="date" class="form-control" [(ngModel)]="inputFiltros['filtroDataInicial']"
+                        max="9999-12-31">
+
+                    <span class="input-group-text">Até:</span>
+                    <input type="date" class="form-control" [(ngModel)]="inputFiltros['filtroDataFinal']"
+                        max="9999-12-31">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="espaco"></div>
+
+        <div id="tabelaResponsiva">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Situação</th>
+                        <th>Último pedido</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let retorno of clientes  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
+                        <td>{{retorno.nome}}</td>
+                        <td>{{retorno.situacao}}</td>
+                        <td>{{retorno.ultimoPedido?.data | date:'dd/MM/yyyy'}}</td>
+
+                        <td class="textoCentralizado">
+
+                            <div class="icones-container">
+                                <a class="icone icone-item-grid" title="Informações">
+                                    <i class="bi bi-info-circle" (click)="openModalInformacoes(retorno)"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid" title="Histórico">
+                                    <i class="bi bi-clock-history" (click)="openModalPedido(retorno)"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid" [ngSwitch]="retorno.situacao">
+                                    <i *ngSwitchCase="'Ativo'" class="bi bi-person text-danger" title="Inativar usuário"
+                                        (click)="alterarSituacaoCliente(retorno)"></i>
+                                    <i *ngSwitchDefault class="bi bi-person-x text-secondary" title="Ativar usuário"
+                                        (click)="alterarSituacaoCliente(retorno)"></i>
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="paginaGridInicial = $event" id="paginaGridInicial"
+                previousLabel="Anterior" nextLabel="Próxima">
+            </pagination-controls>
+        </div>
+    </div>
+</div>
+
+<app-cliente-pedidos #clientePedidos></app-cliente-pedidos>
+<app-novo-cliente #novoCliente></app-novo-cliente>

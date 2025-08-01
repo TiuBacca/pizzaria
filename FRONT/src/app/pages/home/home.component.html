@@ -1,0 +1,125 @@
+<div class="background-container">
+     <div class="background-image"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="pagina-pedidos-container">
+                <div class="lista-lateral">
+                    <h3 class="titulo-lista">Últimos pedidos</h3>
+                    <ul>
+                        <li *ngFor="let item of ultimosPedidos" (click)="onSelectItem(item)"
+                            [class.selected]="item === selectedItem">
+                            <div [ngClass]="getClasseFaixa(item.situacao)" class="faixa-topo"></div>
+                            {{ item.numero }}
+                        </li>
+
+
+                        <div class="caixa-auxiliar" *ngIf="selectedItem">
+                            <span class="fechar-icone" (click)="fecharAuxiliar()">&#10005;</span>
+                            <h4>Pedido {{ selectedItem.numero }}</h4>
+                            <div [ngClass]="getClasseFaixa(selectedItem.situacao)" class="faixa-topo"></div>
+
+                            <p><strong>Cliente:</strong> {{ selectedItem.cliente?.nome }}</p>
+                            <p><strong>Situação:</strong> {{ selectedItem.situacao }}</p>
+                            <p><strong>Endereço:</strong> {{ selectedItem.endereco }}</p>
+
+                            <h5 class="titulo-itens">Itens do pedido:</h5>
+
+                            <ul class="lista-itens">
+                                <li *ngFor="let produto of selectedItem.pedido">
+                                    <span class="icone-item">{{ alimentaIconeItemPedido(produto.item) }}</span>
+                                    <strong>{{ produto.quantidade }}x</strong> {{ produto.descricao }}
+                                    <span *ngIf="produto.observacao"> - <em>{{ produto.observacao }}</em></span>
+                                    <span class="valor-item">R$ {{ (produto.quantidade * produto.valorUnitario) |
+                                        number:'1.2-2' }}</span>
+                                </li>
+                            </ul>
+
+                            <div class="total-pedido">
+                                <strong>Total: </strong>
+                                R$ {{ getValorTotalPedido(selectedItem.pedido) | number:'1.2-2' }}
+                            </div>
+
+                        </div>
+
+
+                    </ul>
+                </div>
+
+
+                <div class="caixa-externa">
+                    <div class="caixa-interna">
+                        <div class="card">
+                            <p class="titulo-card"> <i title="Vendas" class="bi bi-currency-dollar icone-circulo"
+                                    (click)="exibirTotalVendas()"></i>
+                                Total vendas</p>
+                            <p class="valor-card">R${{getTotalVendas()}}</p>
+                        </div>
+                        <div class="card">
+                            <p class="titulo-card"> <i title="Pedidos" class="bi bi-cart-check icone-circulo"
+                                    (click)="exibirTotalPedidos()"></i> Total
+                                pedidos</p>
+                            <p class="valor-card"> {{getTotalPedidos()}} </p>
+                        </div>
+                        <div class="card">
+                            <p class="titulo-card"> <i title="Pedidos pendentes"
+                                    class="bi bi-hourglass-split icone-circulo"></i> Pedidos pendentes</p>
+                            <p class="valor-card"> {{getTotalPedidosBySituacao('PENDENTE')}}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="caixa-auxiliar-vendas" *ngIf="abrirListaVendas">
+                    <span class="fechar-icone" (click)="fecharListaVendas()">&#10005;</span>
+                    <h4>Total de Vendas</h4>
+                    <div class="faixa-topo vendas"></div>
+
+                    <ul class="lista-itens">
+                        <li *ngFor="let venda of listaVendas">
+                            <span class="icone-item">{{ alimentaIconeItemPedido(venda.item) }}</span>
+                            <strong>{{ venda.quantidade }}x</strong> {{ venda.descricao }}
+                            <span class="valor-item">R$ {{ venda.valorTotal | number:'1.2-2' }}</span>
+                        </li>
+                    </ul>
+
+                    <div class="total-pedido">
+                        <strong>Total vendas: </strong>
+                        R$ {{ getTotalVendas() | number:'1.2-2' }}
+                    </div>
+                </div>
+
+                <div class="caixa-auxiliar-pedido" *ngIf="abrirListaPedidos">
+                    <span class="fechar-icone" (click)="fecharListaPedidos()">&#10005;</span>
+                    <h4 class="textoCentralizado">Total de pedidos</h4>
+
+                    <div class="lista-pedidos-horizontal">
+                        <div class="item-pedido" *ngFor="let status of ['FINALIZADO', 'PENDENTE', 'CANCELADO']">
+                            <div [ngClass]="getClasseFaixa(status)" class="faixa-topo-pedido"></div>
+                            <div class="linha-pedido">
+                                <p class="valor-card">
+                                    {{ getTotalPedidosBySituacao(status) }}
+                                    <span class="icone-status">
+                                        <ng-container [ngSwitch]="status">
+                                            <span *ngSwitchCase="'FINALIZADO'" class="icone-item">&#10004;</span>
+                                            <span *ngSwitchCase="'PENDENTE'" class="icone-item">&#9203;</span>
+                                            <span *ngSwitchCase="'CANCELADO'" class="icone-item">&#10060;</span>
+                                        </ng-container>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <button class="botao-novo-pedido">Novo pedido</button> -->
+                    <button class="botao-novo-pedido" (click)="animarCarrinho()">
+                        <span class="carrinho">🛒</span>
+                        Novo Pedido
+                    </button>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

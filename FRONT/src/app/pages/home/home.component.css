@@ -1,0 +1,362 @@
+.espaco {
+    padding: 10px;
+}
+
+.subTitulo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgb(0, 23, 85);
+    text-align: center;
+}
+
+
+.faixa-topo {
+    height: 5px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.bg-pendente {
+    background-color: orange;
+}
+
+.bg-finalizado {
+    background-color: green;
+}
+
+.bg-cancelado {
+    background-color: red;
+}
+
+.background-image {
+    opacity: 1;
+    z-index: 0;
+}
+
+.pagina-pedidos-container {
+    display: flex;
+    gap: 1rem;
+    z-index: 1;
+
+}
+
+.lista-lateral {
+    width: 220px;
+    background-color: rgba(119, 119, 119, 0.85);
+    color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 85vh;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.titulo-lista {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 0.5rem;
+}
+
+.lista-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-lateral li {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.lista-lateral li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.conteudo-pedidos {
+    flex: 1;
+}
+
+
+.lista-lateral::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lista-lateral::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+}
+
+.lista-lateral::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.caixa-auxiliar-vendas {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 1050;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.caixa-auxiliar-vendas .fechar-icone {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+.faixa-topo.vendas {
+    height: 5px;
+    background-color: #28a745;
+    margin-bottom: 10px;
+}
+
+
+.caixa-auxiliar {
+    position: fixed;
+    top: 100px;
+    left: 250px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 300px;
+    max-width: 450px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.caixa-auxiliar button {
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+
+.fechar-icone {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+.fechar-icone:hover {
+    color: #ff4d4d;
+}
+
+.caixa-externa {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.caixa-interna {
+    display: flex;
+    gap: 10px;
+}
+
+.card {
+    width: 400px;
+    height: 150px;
+    background-color: rgba(119, 119, 119, 0.85);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.valor-card {
+    font-size: 25px;
+}
+
+.titulo-card {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.icone-circulo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e60000;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.icone-circulo:hover {
+    cursor: pointer;
+}
+
+
+
+
+.titulo-itens {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.lista-itens {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-itens li {
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+
+    flex-wrap: wrap;
+
+}
+
+.lista-itens li strong {
+    color: #ffd700;
+}
+
+.lista-itens li em {
+    font-style: italic;
+    color: #ccc;
+}
+
+
+.valor-item {
+    margin-left: 10px;
+    float: right;
+    font-weight: bold;
+}
+
+.total-pedido {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #59a548;
+}
+
+.linha-pedido {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.valor-card {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+
+.lista-pedidos-horizontal {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.item-pedido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.faixa-topo-pedido {
+    height: 5px;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.valor-card {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.icone-status {
+    margin-left: 6px;
+    font-size: 1.2rem;
+}
+
+.caixa-auxiliar-pedido {
+    position: fixed;
+    top: 5;
+    right: 0;
+    width: 350px;
+    height: 25%;
+    background-color: #333;
+    color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 1050;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+        display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* faz o conteúdo principal ficar em cima e o botão embaixo */
+
+}
+
+.botao-novo-pedido {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    margin: 15px auto;
+    display: block;
+    padding: 10px 15px;
+    background-color: #1b9117;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botao-novo-pedido:hover {
+    background-color: #168012;
+    transform: scale(1.02);
+}
+
+.carrinho {
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%) rotateY(180deg);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: left 0.6s ease, opacity 0.3s ease;
+}
+
+.botao-novo-pedido:hover .carrinho {
+    left: calc(100% - 40px);
+    opacity: 1;
+}

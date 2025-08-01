@@ -1,0 +1,7 @@
+{
+    "/pizzaria/*": {
+        "target":"http://localhost:5432",
+        "secure": false,
+        "LogLevel": "debug"
+    }
+}

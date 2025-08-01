@@ -1,0 +1,75 @@
+<div class="modal fade" id="modalEndereco" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md modalAdicionar">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="card-title">Adicionar endereço</h5>
+
+                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formEndereco">
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="estado">Estado</label>
+                            <ng-multiselect-dropdown [placeholder]="'Selecione'"
+                                [settings]="listaConfigCombos['configEstado']" [data]="listaCombos['listaEstado']"
+                                formControlName="estado"  (onSelect)="onEstadoSelecionado($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cidade">Cidade</label>
+                            <ng-multiselect-dropdown [placeholder]="'Selecione'"
+                                [settings]="listaConfigCombos['configCidade']" [data]="listaCombos['listaCidade']"
+                                formControlName="cidade">
+                            </ng-multiselect-dropdown>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <label for="cep">CEP</label>
+                            <input type="text" class="form-control" formControlName="cep" (blur)="buscarEnderecoPorCep()" maxlength="9" />
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label for="rua">Rua</label>
+                            <input type="text" class="form-control" formControlName="rua" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="rua">Bairro</label>
+                            <input type="text" class="form-control" formControlName="bairro" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" class="form-control" formControlName="complemento" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="numero">Número</label>
+                            <input type="text" class="form-control" formControlName="numero" />
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary" (click)="salvarEndereco()">Salvar</button>
+
+            </div>
+        </div>
+    </div>
+</div>

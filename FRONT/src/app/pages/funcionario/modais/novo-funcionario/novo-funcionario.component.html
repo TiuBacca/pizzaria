@@ -1,0 +1,42 @@
+<div class="modal fade" id="modalNovoFuncionario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="card-title">Adicionar funcionário</h5>
+                <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="incluirForm">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <label for="rua">Nome</label>
+                            <input type="text" class="form-control" formControlName="nome" />
+                        </div>
+
+                    </div>
+
+                    <div class="espaco"></div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <label for="estado">Função</label>
+                            <ng-multiselect-dropdown [placeholder]="'Selecione'" [settings]="listaConfig['funcao']"
+                                [data]="listaCombos['funcao']" formControlName="funcao">
+                            </ng-multiselect-dropdown>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" (click)="salvar()" [disabled]="incluirForm.invalid">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

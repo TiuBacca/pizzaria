@@ -31,6 +31,8 @@ import { HistoricoFornecedorComponent } from './pages/fornecedor/modais/historic
 import { ProdutoFornecedorComponent } from './pages/fornecedor/modais/produto-fornecedor/produto-fornecedor.component';
 import { NovoProdutoFornecedorComponent } from './pages/fornecedor/modais/novo-produto-fornecedor/novo-produto-fornecedor.component';
 import { NovoFuncionarioComponent } from './pages/funcionario/modais/novo-funcionario/novo-funcionario.component';
+import { AdvertenciaIconePipe } from './components/AdvertenciaIconePipe ';
+import { FeriasFuncionarioComponent } from './pages/funcionario/modais/ferias-funcionario/ferias-funcionario.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,7 @@ import { NovoFuncionarioComponent } from './pages/funcionario/modais/novo-funcio
     NovoEnderecoComponent,
     NovoContatoComponent,
     NovoProdutoFornecedorComponent,
-    NovoFuncionarioComponent
+    NovoFuncionarioComponent, AdvertenciaIconePipe, FeriasFuncionarioComponent
   ],
   exports: [
     HeaderComponent,
@@ -68,7 +70,7 @@ import { NovoFuncionarioComponent } from './pages/funcionario/modais/novo-funcio
     LoaderComponent,
     DefaultLayoutComponent,
     FooterComponent,     NovoEnderecoComponent,
-    NovoContatoComponent],
+    NovoContatoComponent, AdvertenciaIconePipe  ],
 
   imports: [
     CommonModule,

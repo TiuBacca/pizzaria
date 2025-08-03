@@ -1,0 +1,77 @@
+<div class="modal fade" id="modalFerias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Conceder Férias - {{ funcionario?.nome }}</h5>
+        <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+      </div>
+
+      <form [formGroup]="feriasForm" (ngSubmit)="confirmarFerias()">
+        <div class="modal-body">
+
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <label class="form-label">Data Início</label>
+              <input type="date" class="form-control" formControlName="dataInicio" (change)="calcularDiasFerias()"
+                max="9999-12-31">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Data Fim</label>
+              <input type="date" class="form-control" formControlName="dataFim" (change)="calcularDiasFerias()"
+                max="9999-12-31">
+
+              <div class="text-danger mt-1" *ngIf="feriasForm.hasError('dataInvalida')">
+                A data final deve ser posterior à data inicial.
+              </div>
+
+              <div class="mt-2" *ngIf="diasFerias !== null">
+                <span [ngClass]="{'text-danger': diasFerias <= 0, 'text-success': diasFerias > 0}">
+                  {{ diasFerias > 0 ? diasFerias + ' dia(s) de férias' : 'Período inválido' }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="espaco"></div>
+
+          <div class="mb-3">
+            <label class="form-label">Tipo de Férias</label>
+            <select class="form-select" formControlName="tipoFerias">
+              <option value="REMUNERADAS">Remuneradas</option>
+              <option value="PARCIAIS">Parciais</option>
+              <option value="COLETIVAS">Coletivas</option>
+            </select>
+          </div>
+
+
+          <div class="mb-3">
+            <label class="form-label">Observações</label>
+            <textarea class="form-control" rows="3" formControlName="observacoes"></textarea>
+          </div>
+
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="notificarEmail" id="notificarEmail">
+            <label class="form-check-label" for="notificarEmail">
+              Notificar funcionário por e-mail
+            </label>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-success" type="submit" [disabled]="feriasForm.invalid">
+            Confirmar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

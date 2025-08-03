@@ -19,10 +19,31 @@ export class FuncionarioService {
     );
   }
 
-    salvarFuncionario(data: any): Observable<any> {
+  salvarFuncionario(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/salvar`, data).pipe(
       map((response) => response)
     );
+  }
+
+  adicionarAdvertencia(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/advertencia?id=${data.id}`, {}).pipe(
+      map(response => response)
+    );
+
+  }
+
+  demitirFuncionario(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/demitir?id=${data.id}`, {}).pipe(
+      map(response => response)
+    );
+
+  }
+
+  concederFerias(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/ferias`, data).pipe(
+      map(response => response)
+    );
+
   }
 
 }

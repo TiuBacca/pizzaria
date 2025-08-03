@@ -55,16 +55,28 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th style="width: 65px !important;"> </th>
                         <th>Nome</th>
                         <th>Situação</th>
+                        <th>Funções</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
                         *ngFor="let retorno of funcionarios  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
+
+
+                        <td>
+                            <i [ngClass]="(retorno.advertencias | advertenciaIcone).icon + ' ' + (retorno.advertencias | advertenciaIcone).color"
+                                [title]="(retorno.advertencias | advertenciaIcone).title">
+                            </i>
+                        </td>
+                        
                         <td>{{retorno.nome}}</td>
-                        <td>{{retorno.situacao}}</td>
+                        <td>{{retorno.situacao?.descricao}}</td>
+                        <td>{{ getFuncoesDescricao(retorno.funcoes) }}</td>
+
 
                         <td class="textoCentralizado">
 
@@ -73,16 +85,16 @@
                                     <i class="bi bi-pencil-fill" (click)="openModalEdicaoFuncionario(retorno)"></i>
                                 </a>
 
-                                <a class="icone icone-item-grid iconeVendas " title="Histórico vendas">
-                                    <i class="bi bi-cash-coin"></i>
-                                </a>
-
                                 <a class="icone icone-item-grid iconeAdvertencia" title="Advertencia">
-                                    <i class="bi bi-person-exclamation"></i>
+                                    <i class="bi bi-person-exclamation" (click)="adicionarAdvertencia(retorno)"></i>
                                 </a>
 
                                 <a class="icone icone-item-grid iconeExcluir" title="Demitir">
-                                    <i class="bi bi-person-x"></i>
+                                    <i class="bi bi-person-x" (click)="demitirFuncionario(retorno)"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid iconeFerias" title="Férias">
+                                    <i class="bi bi-airplane" (click)="openModalFerias(retorno)"></i>
                                 </a>
 
                             </div>
@@ -98,3 +110,4 @@
 </div>
 
 <app-novo-funcionario #modalNovoFuncionario></app-novo-funcionario>
+<app-ferias-funcionario #modalFerias></app-ferias-funcionario>

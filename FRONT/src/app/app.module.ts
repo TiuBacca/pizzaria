@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { RequestHandleInterceptor } from './interceptors/requestsHandle.interceptor';
 import { TokenHandleInterceptor } from './interceptors/tokenHandle.interceptor';
+import { AdvertenciaIconePipe } from './components/AdvertenciaIconePipe ';
 
 
 @NgModule({

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class AlertService {
-    
+
     Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -45,17 +45,35 @@ export class AlertService {
         })
     }
 
-async confirmarAcao(mensagem: string): Promise<boolean> {
-  const resultado = await Swal.fire({
-    title: mensagem,
-    showCancelButton: true,
-    showDenyButton: false,
-    cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Confirmar',
-    confirmButtonColor: '#ff1100',
-  });
+    async confirmarAcao(mensagem: string): Promise<boolean> {
+        const resultado = await Swal.fire({
+            title: mensagem,
+            showCancelButton: true,
+            showDenyButton: false,
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar',
+            confirmButtonColor: '#ff1100',
+        });
 
-  return resultado.isConfirmed;
-}
+        return resultado.isConfirmed;
+    }
+
+    async confirmarAcaoDinamico(
+        mensagem: string,
+        confirmButtonColor: string,
+        icon: 'warning' | 'info' | 'success' | 'error' | 'question' 
+    ): Promise<boolean> {
+        const resultado = await Swal.fire({
+            title: mensagem,
+            icon: icon,
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar',
+            confirmButtonColor: confirmButtonColor,
+        });
+
+        return resultado.isConfirmed;
+    }
+
 
 }

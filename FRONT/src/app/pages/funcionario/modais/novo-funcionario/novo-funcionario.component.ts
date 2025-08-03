@@ -27,6 +27,8 @@ export class NovoFuncionarioComponent implements OnInit {
 
   listaCombos: { [key: string]: any } = {};
   listaConfig: { [key: string]: any } = {};
+  
+  titulo: any;
 
   constructor(private configService: ConfigService, private funcionarioService: FuncionarioService,
     private alertService: AlertService
@@ -44,7 +46,10 @@ export class NovoFuncionarioComponent implements OnInit {
       this.alimentaCombFuncao();
 
       if (item) {
+        this.titulo = 'Editar funcionário';
         setTimeout(() => this.preencheModal(item)); // garante que o select já renderizou
+      } else {
+        this.titulo = 'Adicionar funcionário';
       }
 
       this.modalNovoFuncionario.show();
@@ -78,6 +83,8 @@ export class NovoFuncionarioComponent implements OnInit {
 
   preencheModal(item: any) {
     this.incluirForm.get('id')?.setValue(item.id);
+    this.incluirForm.get('nome')?.setValue(item.nome);
+    this.incluirForm.get('funcao')?.setValue(item.funcoes)
   }
 
   salvar() {

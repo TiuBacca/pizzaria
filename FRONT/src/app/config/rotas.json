@@ -31,6 +31,12 @@
         "cor":"#012970"
     },
     {
+        "rota":"/cardapio",
+        "nome":"Cardapio",
+        "icone":"bi bi-list-columns",
+        "cor":"#012970"
+    },
+    {
         "rota":"/pedido",
         "nome":"Pedido",
         "icone":"bi bi-sort-up",

@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Produto } from '../objetos/Produto';
-import { SetorProduto } from '../objetos/SetorProduto';
+import { SetorProduto, SetorProdutoHelper } from '../objetos/SetorProduto';
 import { HistoricoComprasComponent } from './modais/historico-compras/historico-compras.component';
 import { NovoProdutoComponent } from './modais/novo-produto/novo-produto.component';
 import { ConfigService } from 'src/app/services/config.service';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { FornecedorService } from 'src/app/services/fornecedor.service';
 
 @Component({
   selector: 'app-produto',
@@ -24,10 +25,10 @@ export class ProdutoComponent implements OnInit {
   inputFiltros: { [key: string]: any } = {};
   listaCombos: { [key: string]: any } = {};
   listaConfigCombos: { [key: string]: any } = {};
-  produtos: Produto[] = [];
+  produtos: any;
 
 
-  constructor(private configService: ConfigService, private produtoService: ProdutoService) { }
+  constructor(private configService: ConfigService, private produtoService: ProdutoService, private fornecedorService: FornecedorService) { }
 
   ngOnInit(): void {
     this.produtos = this.alimentaMock();
@@ -47,17 +48,28 @@ export class ProdutoComponent implements OnInit {
   }
 
   alimentaCombo() {
-    this.listaConfigCombos['setor'] = this.configService.setConfigDropDownSetting(false, 'chave', 'descricao');
+    this.listaConfigCombos['setor'] = SetorProdutoHelper.config(this.configService)
+    this.listaCombos['setor'] = SetorProdutoHelper.listar();
 
-    this.listaCombos['setor'] = Object.entries(SetorProduto).map(([chave, descricao]) => ({
-      chave,
-      descricao
-    })).sort((a, b) => a.descricao.localeCompare(b.descricao));
+    this.listaConfigCombos['fornecedor'] = this.configService.setConfigDropDownSetting(false, 'id', 'nome');
+    this.fornecedorService.buscaListaFornecedores({}).subscribe((respose) => {
+      this.listaCombos['fornecedor'] = respose ? respose : [];
+    })
   }
 
   openModalNovoProduto() {
 
     this.modalNovoProduto.openModal(null)
+      .then((res: any) => {
+        this.pesquisar();
+      })
+      .catch((err: any) => {
+
+      });
+  }
+
+  editarProduto(item: any) {
+    this.modalNovoProduto.openModal(item)
       .then((res: any) => {
         this.pesquisar();
       })
@@ -74,7 +86,7 @@ export class ProdutoComponent implements OnInit {
 
 
   alimentaMock() {
-    return [{ id: 1, descricao: 'teste', qtdEstoque: 5, setor: SetorProduto.COZINHA, precoUnit: 5 }]
+    return [{ id: 1, descricao: 'teste', qtdEstoque: 5, setor: {chave:"COZINHA", descricao: SetorProduto.COZINHA}, precoUnit: 5 }]
   }
 
 }

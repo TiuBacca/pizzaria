@@ -10,6 +10,7 @@ import { ProdutoComponent } from './pages/produto/produto.component';
 import { PedidoComponent } from './pages/pedido/pedido.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CardapioComponent } from './pages/cardapio/cardapio.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: "fornecedor", component: FornecedorComponent },
       { path: "funcionario", component: FuncionarioComponent },
       { path: "pedido", component: PedidoComponent },
+      { path: "cardapio", component: CardapioComponent},
       { path: "produto", component: ProdutoComponent }]
   }
 ];

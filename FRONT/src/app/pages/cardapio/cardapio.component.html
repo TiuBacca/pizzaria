@@ -13,8 +13,8 @@
                     <i class="bi bi-brush"></i>&nbsp;Limpar
                 </button>
                 <label for="floatingSelect">&nbsp;&nbsp;</label>
-                <button type="button" class="btn btn-success" (click)="openModalNovoProduto()">
-                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar
+                <button type="button" class="btn btn-success" (click)="openModalNovoSabor()">
+                    <i class="bi bi-plus-circle"></i>&nbsp;Adicionar sabor
                 </button>
             </div>
         </div>
@@ -48,29 +48,41 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Descrição</th>
-                        <th>Setor</th>
-                        <th>Quantidade em estoque</th>
+                        <th>Nome</th>
+                        <th>Preço custo</th>
+                        <th>Preço venda</th>
+                        <th>Grupo</th>
+                        <th>Promoção ativa</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let retorno of produtos  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
-                        <td>{{retorno.descricao}}</td>
-                        <td>{{retorno.setor?.descricao}}</td>
-                        <td>{{retorno.precoUnit}}</td>
+                        *ngFor="let retorno of sabores  | paginate: {itemsPerPage: 10, currentPage: paginaGridInicial, id:'paginaGridInicial' }; let i = index">
+                        <td>{{retorno.nome}}</td>
+                        <td>{{"R$" + retorno.preco?.custo}}</td>
+                        <td>{{"R$" + retorno.preco?.venda}}</td>
+                        <td>{{retorno.grupo}}</td>
+                        <td>{{retorno.promocao ? 'Sim' : 'Não'}}</td>
 
                         <td>
 
                             <div class="icones-container">
 
-                                <a class="icone" title="Editar">
-                                    <i class="bi bi-pencil-fill" (click)="editarProduto(retorno)"></i>
+                                <a class="icone icone-item-grid" title="Editar">
+                                    <i class="bi bi-pencil-fill"></i>
                                 </a>
 
-                                <a class="icone" title="Histórico compras">
-                                    <i class="bi bi-clock-history" (click)="openModalHistoricoCompras(retorno)"></i>
+                                <a class="icone icone-item-grid" title="Receita">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid" title="Histórico vendas">
+                                    <i class="bi bi-clock-history"></i>
+                                </a>
+
+                                <a class="icone icone-item-grid" title="Promoção">
+                                    <i class="bi bi-clock-history"></i>
                                 </a>
                             </div>
                         </td>
@@ -84,6 +96,4 @@
     </div>
 </div>
 
-
-<app-historico-compras #modalHistoricoCompras></app-historico-compras>
-<app-novo-produto #modalNovoProduto></app-novo-produto>
+<app-novo-sabor #modalNovoSabor></app-novo-sabor>

@@ -18,6 +18,11 @@ export class LoginComponent {
 
 
   login() {
-    this.router.navigate(['/home']);
+    let clienteLogando = true;
+    if (clienteLogando ){
+      this.router.navigate(['/usuario/home']);
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
 }

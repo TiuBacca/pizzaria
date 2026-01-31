@@ -3,7 +3,6 @@ import { AlertService } from 'src/app/services/alert.service';
 import { ConfigService } from 'src/app/services/config.service';
 import { SituacaoPedido } from '../objetos/SituacaoPedido';
 import { PedidoService } from 'src/app/services/pedido.service';
-import { NovoPedidoComponent } from './modais/novo-pedido/novo-pedido.component';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -46,12 +45,6 @@ export class PedidoComponent implements OnInit {
     })).sort((a, b) => a.descricao.localeCompare(b.descricao));
 
     this.listaConfigCombos['situacao'] = this.configService.setConfigDropDownSetting(false, 'chave', 'descricao');
-  }
-
-  openModalNovoPedido(){
-    this.modalService.modalNovoPedido.openModal({}).then(((res) => {
-      this.pesquisar();
-    }))
   }
 
 }

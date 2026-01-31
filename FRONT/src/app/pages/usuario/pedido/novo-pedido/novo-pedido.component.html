@@ -1,0 +1,73 @@
+<div class="modal fade" id="modalNovoPedido" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">🍕 Novo Pedido</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- TAMANHO -->
+        <h6 class="fw-bold mb-2">Tamanho</h6>
+        <div class="d-flex gap-2 mb-4">
+          <button
+            class="btn btn-outline-primary"
+            *ngFor="let t of tamanhos"
+            (click)="selecionarTamanho(t.fatias)"
+          >
+            {{ t.nome }}
+          </button>
+        </div>
+
+        <!-- SABORES -->
+        <h6 class="fw-bold mb-2">Sabores</h6>
+        <div class="d-flex gap-3 flex-wrap mb-4">
+          <div
+            class="sabor card p-2 text-center"
+            *ngFor="let sabor of sabores"
+            draggable="true"
+            (dragstart)="dragSabor(sabor, $event)"
+          >
+            <img [src]="sabor.imagem">
+            <small class="fw-bold">{{ sabor.nome }}</small>
+          </div>
+        </div>
+
+        <!-- PIZZA -->
+        <div class="d-flex justify-content-center">
+          <div
+            class="pizza"
+            (dragover)="$event.preventDefault()"
+            (drop)="dropPizza($event)"
+          >
+            <div
+              class="fatia"
+              *ngFor="let fatia of fatias; index as i"
+              [style.--i]="i"
+              [style.--total]="fatias.length"
+              [style.backgroundImage]="
+                fatia.sabor ? 'url(' + fatia.sabor.imagem + ')' : 'none'
+              "
+            ></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button class="btn btn-success">
+          Confirmar Pedido
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

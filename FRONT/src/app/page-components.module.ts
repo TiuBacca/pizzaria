@@ -33,9 +33,10 @@ import { NovoProdutoFornecedorComponent } from './pages/fornecedor/modais/novo-p
 import { NovoFuncionarioComponent } from './pages/funcionario/modais/novo-funcionario/novo-funcionario.component';
 import { AdvertenciaIconePipe } from './components/AdvertenciaIconePipe ';
 import { FeriasFuncionarioComponent } from './pages/funcionario/modais/ferias-funcionario/ferias-funcionario.component';
-import { NovoPedidoComponent } from './pages/pedido/modais/novo-pedido/novo-pedido.component';
 import { CardapioComponent } from './pages/cardapio/cardapio.component';
 import { NovoSaborComponent } from './pages/cardapio/modais/novo-sabor/novo-sabor.component';
+import { NovoPedidoComponent } from './pages/usuario/pedido/novo-pedido/novo-pedido.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -62,14 +63,12 @@ import { NovoSaborComponent } from './pages/cardapio/modais/novo-sabor/novo-sabo
     HistoricoFornecedorComponent,
     ProdutoFornecedorComponent,
     NovoEnderecoComponent,
-    NovoContatoComponent,
     NovoProdutoFornecedorComponent,
     NovoFuncionarioComponent, 
     AdvertenciaIconePipe, 
     FeriasFuncionarioComponent, 
-    NovoPedidoComponent, 
     CardapioComponent,
-    NovoSaborComponent
+    NovoSaborComponent, NovoPedidoComponent, UsuarioComponent
   ],
   exports: [
     HeaderComponent,
@@ -81,8 +80,7 @@ import { NovoSaborComponent } from './pages/cardapio/modais/novo-sabor/novo-sabo
     NovoEnderecoComponent,
     NovoContatoComponent, 
     AdvertenciaIconePipe, 
-    NovoPedidoComponent, 
-    CardapioComponent],
+    CardapioComponent, NovoPedidoComponent],
 
   imports: [
     CommonModule,

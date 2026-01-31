@@ -11,6 +11,7 @@ import { PedidoComponent } from './pages/pedido/pedido.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CardapioComponent } from './pages/cardapio/cardapio.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: "funcionario", component: FuncionarioComponent },
       { path: "pedido", component: PedidoComponent },
       { path: "cardapio", component: CardapioComponent},
-      { path: "produto", component: ProdutoComponent }]
+      { path: "produto", component: ProdutoComponent },
+      { path: "usuario/home", component: UsuarioComponent}]
   }
 ];
 

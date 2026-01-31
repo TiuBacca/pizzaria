@@ -1,0 +1,41 @@
+<div class="background-container">
+    <div class="background-image"></div>
+
+    <div class="home-container">
+        <div class="cards-home">
+
+            <!-- NOVO PEDIDO -->
+            <div class="card-home card-pedido" title="Novo pedido">
+                <p class="titulo-card">Novo pedido</p>
+
+                <button class="botao botao-pedido" (click)="clicarAbrirModalNovoPedido()">
+                    <i class="bi bi-cart"></i>
+                    Fazer pedido
+                </button>
+            </div>
+
+            <!-- HISTÓRICO -->
+            <div class="card-home card-historico" title="Histórico de pedidos">
+                <p class="titulo-card">Histórico</p>
+
+                <button class="botao botao-historico">
+                    <i class="bi bi-clock-history"></i>
+                    Ver histórico
+                </button>
+            </div>
+
+            <!-- FAVORITOS -->
+            <div class="card-home card-favoritos" title="Favoritos">
+                <p class="titulo-card">Favoritos</p>
+
+                <button class="botao botao-favoritos">
+                    <i class="bi bi-heart"></i>
+                    Meus favoritos
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-novo-pedido #novoPedido></app-novo-pedido>

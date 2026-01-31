@@ -1,0 +1,177 @@
+/* RESET */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1c1c1c;
+    color: #fff;
+}
+
+/* BACKGROUND */
+.background-image {
+    opacity: 1;
+    z-index: 0;
+}
+
+/* LAYOUT CENTRAL */
+.home-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🔑 CONTAINER DOS CARDS */
+.cards-home {
+    display: flex;
+    flex-wrap: wrap;                 /* permite quebrar linha */
+    justify-content: center;
+    gap: 24px;
+    transform: translateY(-60px);
+    max-width: 1100px;
+    width: 100%;
+}
+
+/* CARD BASE */
+.card-home {
+    width: 320px;
+    max-width: 100%;
+    flex: 1 1 320px;                 /* 🔑 responsivo */
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 14px;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.card-home:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* TÍTULO */
+.titulo-card {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0;
+    color: #000;
+}
+
+/* BOTÃO BASE */
+.botao {
+    position: relative;
+    overflow: hidden;
+    width: 85%;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* =========================
+   🛒 NOVO PEDIDO
+   ========================= */
+.botao-pedido {
+    background-color: #1b9117;
+}
+
+.card-pedido:hover .botao-pedido {
+    background-color: #168012;
+    transform: scale(1.03);
+}
+
+/* Carrinho deslizando */
+.botao-pedido i {
+    position: absolute;
+    left: -28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: left 0.6s ease, opacity 0.3s ease;
+}
+
+.card-pedido:hover .botao-pedido i {
+    left: calc(100% - 32px);
+    opacity: 1;
+}
+
+/* =========================
+   🕒 HISTÓRICO
+   ========================= */
+.botao-historico {
+    background-color: #0d6efd;
+}
+
+.card-historico:hover .botao-historico {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(13, 110, 253, 0.5);
+    animation: pulse 1.2s ease-out;
+}
+
+/* Ícone */
+.botao-historico i {
+    margin-right: 8px;
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.card-historico:hover .botao-historico i {
+    transform: rotate(-20deg) scale(1.2);
+}
+
+/* Pulse */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(13, 110, 253, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+    }
+}
+
+/* =========================
+   ❤️ FAVORITOS
+   ========================= */
+.botao-favoritos {
+    background-color: #dc3545;
+}
+
+.card-favoritos:hover .botao-favoritos {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.5);
+}
+
+/* Coração batendo */
+.botao-favoritos i {
+    margin-right: 8px;
+    display: inline-block;
+}
+
+@keyframes heart-beat {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.4); }
+    50%  { transform: scale(1.1); }
+    70%  { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.card-favoritos:hover .botao-favoritos i {
+    animation: heart-beat 0.6s ease;
+}
